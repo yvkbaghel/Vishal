@@ -1,0 +1,814 @@
+I would design VishalAstro as a premium luxury Vedic astrology brand, not a typical astrology website.
+
+The reference sites have strong content but are visually outdated. The new version should combine:
+
+Premium Apple-level UI
+Modern animations
+Spiritual atmosphere
+Extremely SEO-friendly architecture
+Future-ready for dynamic CMS
+Fast loading
+Mobile-first
+Rich storytelling
+Highly visual experience
+
+The website should initially be 100% static while the architecture is prepared for APIs, CMS, booking, and authentication later. This is a good fit for Next.js because it allows you to start with static generation and later introduce server features without a major rewrite.
+
+Recommended Tech Stack
+Next.js 16 (App Router)
+TypeScript
+Tailwind CSS v4
+Framer Motion
+GSAP
+Lenis Smooth Scroll
+Three.js (light usage)
+React Three Fiber
+Lottie
+Next/Image
+next/font
+MDX ready
+Static JSON data
+Vercel deployment
+SEO optimized
+Design Philosophy
+
+Theme
+
+"Ancient Wisdom Meets Modern Technology"
+
+The website should feel like
+
+luxury
+spiritual
+cosmic
+elegant
+trustworthy
+premium
+
+NOT
+
+❌ old HTML astrology website
+
+Color Palette (Google Material Colors)
+
+Primary
+
+Deep Purple
+
+#673AB7
+
+Secondary
+
+Amber
+
+#FFC107
+
+Accent
+
+Indigo
+
+#3F51B5
+
+Background
+
+#050816
+
+Surface
+
+#111827
+
+Card
+
+#1F2937
+
+Text
+
+#FFFFFF
+
+Muted
+
+#CBD5E1
+
+Success
+
+#4CAF50
+
+Danger
+
+#EF5350
+Fonts
+
+Heading
+
+Cinzel
+
+Subheading
+
+Cormorant Garamond
+
+Body
+
+Inter
+
+Sanskrit Quotes
+
+Noto Serif Devanagari
+
+Entire Body
+
+Instead of plain background
+
+Build animated cosmic background
+
+Includes
+
+✓ Stars
+
+✓ Nebula
+
+✓ Slow moving particles
+
+✓ Zodiac wheel
+
+✓ Constellations
+
+✓ Floating planets
+
+✓ Golden dust
+
+✓ Animated glow
+
+✓ Mouse parallax
+
+✓ Moon light
+
+✓ Gradient mesh
+
+✓ Galaxy overlay
+
+Everything should be GPU accelerated.
+
+Images
+
+Use many large images.
+
+Images should cover
+
+Astrologer
+
+Temple
+
+Shiva
+
+Navgraha
+
+Meditation
+
+Rudraksha
+
+Horoscope
+
+Palm
+
+Kundli
+
+Sun
+
+Moon
+
+Galaxy
+
+Space
+
+Mountains
+
+Meditation
+
+Yantra
+
+Mandala
+
+Vedic charts
+
+Planets
+
+Holy books
+
+Prayer
+
+Luxury office
+
+Consultation
+
+Client testimonials
+
+Lifestyle
+
+Success
+
+Marriage
+
+Business
+
+Career
+
+Education
+
+Children
+
+Healing
+
+Meditation
+
+GIFs
+
+Use tasteful animations
+
+Galaxy
+
+Rotating zodiac
+
+Shining stars
+
+Burning diya
+
+Floating lotus
+
+Flowing smoke
+
+Temple lamps
+
+Meditation aura
+
+Golden particles
+
+Do NOT overuse GIFs. Prefer Lottie and CSS animations where possible.
+
+Homepage Structure
+Hero
+
+Fullscreen
+
+Animated background
+
+Large astrologer image
+
+Headline
+
+Transform Your Destiny Through Ancient Vedic Astrology
+
+CTA
+
+Book Consultation
+
+Know Your Horoscope
+
+Animated zodiac wheel
+
+Mouse movement effects
+
+Floating planets
+
+Statistics
+
+Years Experience
+
+Happy Clients
+
+Predictions
+
+Countries
+
+Consultations
+
+Success Rate
+
+Counter animation
+
+About Vishal Astro
+
+Story
+
+Journey
+
+Mission
+
+Vision
+
+Animated timeline
+
+Astrology Services
+
+Grid
+
+Career
+
+Marriage
+
+Love
+
+Business
+
+Health
+
+Education
+
+Foreign Settlement
+
+Manglik
+
+Kundli
+
+Gemstone
+
+Numerology
+
+Vastu
+
+Palmistry
+
+Face Reading
+
+Tarot
+
+Yantra
+
+Rudraksha
+
+Each service has
+
+Image
+
+Animation
+
+Hover
+
+CTA
+
+Why Choose Us
+
+Premium cards
+
+Accurate predictions
+
+Scientific approach
+
+Personal guidance
+
+Confidential
+
+Lifetime support
+
+Consultation Process
+
+Timeline
+
+1
+
+Fill form
+
+↓
+
+2
+
+Share birth details
+
+↓
+
+3
+
+Chart Analysis
+
+↓
+
+4
+
+Video Call
+
+↓
+
+5
+
+Remedies
+
+↓
+
+6
+
+Support
+
+Featured Videos
+
+Embedded YouTube
+
+Animated carousel
+
+Testimonials
+
+Cards
+
+Photos
+
+Ratings
+
+Video testimonials
+
+Success Stories
+
+Case studies
+
+Timeline
+
+Before
+
+After
+
+Astrology Knowledge
+
+Latest articles
+
+Static now
+
+Dynamic later
+
+FAQ
+
+Accordion
+
+SEO optimized
+
+CTA
+
+Large animated banner
+
+Footer
+
+Huge footer
+
+Quick Links
+
+Services
+
+Resources
+
+Social
+
+Contact
+
+Newsletter
+
+Main Navigation
+
+Home
+
+About
+
+Services
+
+Kundli
+
+Horoscope
+
+Blog
+
+Testimonials
+
+Media
+
+Gallery
+
+Contact
+
+Book Consultation
+
+Sticky navigation
+
+Glassmorphism
+
+Scroll animations
+
+Services Pages
+
+Each service gets
+
+Hero
+
+Benefits
+
+Problems solved
+
+Process
+
+FAQs
+
+Testimonials
+
+CTA
+
+Related Services
+
+SEO
+
+Images
+
+Animation
+
+About Page
+
+Biography
+
+Mission
+
+Achievements
+
+Journey
+
+Certifications
+
+Awards
+
+Media Coverage
+
+Gallery
+
+Timeline
+
+Blog
+
+Category pages
+
+Single article
+
+Related articles
+
+Share
+
+Newsletter
+
+Tags
+
+Author
+
+Reading progress
+
+TOC
+
+Gallery
+
+Photos
+
+Videos
+
+Events
+
+Temple
+
+Consultation
+
+Awards
+
+Media
+
+Filters
+
+Lightbox
+
+Testimonials
+
+Video
+
+Google reviews
+
+Photos
+
+Stories
+
+Animated cards
+
+Contact
+
+Map placeholder
+
+Office
+
+Phone
+
+Email
+
+WhatsApp
+
+Working hours
+
+Contact form
+
+FAQ
+
+Booking
+
+Static
+
+Modern wizard
+
+Step 1
+
+Select Service
+
+↓
+
+Step 2
+
+Choose Date
+
+↓
+
+Step 3
+
+Birth Details
+
+↓
+
+Step 4
+
+Confirmation
+
+Dynamic later
+
+Reusable Components
+
+Navbar
+
+Footer
+
+Hero
+
+Animated Background
+
+Cards
+
+Testimonials
+
+FAQ
+
+CTA
+
+Timeline
+
+Gallery
+
+Stats
+
+Buttons
+
+Badges
+
+Breadcrumb
+
+Progress Bar
+
+Social Icons
+
+Newsletter
+
+Forms
+
+Video Player
+
+Animations
+
+Framer Motion
+
+GSAP
+
+Parallax
+
+Fade
+
+Slide
+
+Rotate
+
+Scale
+
+Reveal
+
+Mouse tracking
+
+Scroll triggered
+
+Counter
+
+Floating
+
+Morphing
+
+Text reveal
+
+Gradient animation
+
+Particle system
+
+SEO
+
+Every page
+
+Unique Title
+
+Description
+
+Keywords
+
+Canonical
+
+OpenGraph
+
+Twitter Card
+
+JSON-LD
+
+Breadcrumb schema
+
+FAQ schema
+
+Service schema
+
+Organization schema
+
+Person schema
+
+Website schema
+
+Article schema
+
+Image sitemap
+
+Video sitemap
+
+robots.txt
+
+sitemap.xml
+
+RSS
+
+Dynamic OG images (later)
+
+The information architecture and educational content should emphasize Vedic astrology concepts, consultation services, educational resources, testimonials, and articles, similar to established astrology websites while maintaining original design and content.
+
+Performance Goals
+
+Lighthouse
+
+Performance ≥99
+
+Accessibility ≥100
+
+SEO ≥100
+
+Best Practices ≥100
+
+CLS <0.05
+
+LCP <1.5s
+
+INP <150ms
+
+Folder Structure
+app/
+components/
+features/
+sections/
+hooks/
+lib/
+constants/
+types/
+styles/
+animations/
+assets/
+images/
+gifs/
+lottie/
+icons/
+public/
+content/
+data/
+seo/
+Future Dynamic Phase
+
+The static architecture should be designed so these features can be added without changing the UI:
+
+Admin Dashboard
+Headless CMS
+Appointment Booking
+User Accounts
+Kundli Generation
+Payment Gateway
+WhatsApp Integration
+Blog CMS
+AI Chat Assistant
+Live Consultation
+Email Automation
+Push Notifications
+Review Management
+CRM
+Analytics Dashboard
+Personalized Horoscope
+Subscription Plans

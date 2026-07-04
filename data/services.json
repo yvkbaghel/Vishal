@@ -1,0 +1,503 @@
+[
+  {
+    "slug": "career",
+    "title": "Career & Profession",
+    "icon": "Briefcase",
+    "sanskrit": "कर्म भाव",
+    "shortDescription": "Align your profession with your cosmic signature. Find your true calling, resolve business blockages, and discover timing for career moves.",
+    "description": "In Vedic astrology, the Tenth House (Karma Bhava) determines your profession, status, and public influence. By analyzing your planetary alignments, Navamsha chart (D9), and current Dasha cycles, we provide precise guidance on whether business or employment is your calling, the ideal sectors for your growth, and the most auspicious times to switch jobs, invest, or launch ventures.",
+    "benefits": [
+      "Identify the exact fields of study and industry sectors where you are destined to excel.",
+      "Recognize upcoming periods of advancement, promotional windows, or potential downfalls.",
+      "Understand the planetary blockages causing delayed recognition or stagnant wages."
+    ],
+    "problemsSolved": [
+      "Confusion between pursuing a salary-based job versus starting an independent business.",
+      "Frequent layoffs, toxic workplace dynamics, or long gaps in employment.",
+      "Repeated financial losses in business investments without clear physical reasons."
+    ],
+    "process": [
+      "Analysis of 10th House, its lord, and Amatyakaraka in your birth chart.",
+      "Review of the D9 (Navamsha) and D10 (Dashamsha) divisional charts for career specificity.",
+      "Dasha timeline calculation to determine the exact date ranges for active transition."
+    ],
+    "faqs": [
+      {
+        "question": "Can Vedic astrology predict when I will get a new job?",
+        "answer": "Yes. By evaluating the transitions of Saturn and Jupiter relative to your 10th House, combined with your active Vimshottari Dasha, we can pin-point high-probability windows for recruitment and promotions."
+      },
+      {
+        "question": "What if my 10th House is weak or contains malefic planets?",
+        "answer": "A 'weak' 10th house is not a lifetime sentence. It merely indicates that additional effort or specific spiritual/practical remedies (like feeding birds or donating on Saturdays) are required to balance the cosmic vibrations."
+      }
+    ]
+  },
+  {
+    "slug": "marriage",
+    "title": "Marriage & Compatibility",
+    "icon": "HeartHandshake",
+    "sanskrit": "विवाह अनुकूलता",
+    "shortDescription": "Discover relationship pathways, match Kundlis (Ashta Koota), resolve delay in marriage, and bring cosmic harmony to your union.",
+    "description": "Vedic relationship matching goes far beyond simple zodiac compatibility. We analyze the 7th House of partnership, the placement of Venus (for men) and Jupiter (for women), Mars' positioning (Manglik analysis), and perform detailed Ashta Koota Kundli matching (Gun Milan) out of 36 points to ensure a peaceful, prosperous, and long-lasting union.",
+    "benefits": [
+      "Gain absolute clarity on compatibility across 8 critical dimensions of life (health, mental tuning, child birth).",
+      "Understand the root cause behind delays or continuous obstacles in finalizing marriage.",
+      "Find cosmic remedies to harmonize conflicts and build trust in your existing marriage."
+    ],
+    "problemsSolved": [
+      "Severe delays in finding an appropriate life partner despite active efforts.",
+      "Marital friction, arguments, lack of intimacy, or separation threats.",
+      "Manglik Dosha fears and match-making complications."
+    ],
+    "process": [
+      "Comparing birth charts of both partners for structural compatibility.",
+      "Evaluating Gun Milan points and Mars placements (Kuja Dosha).",
+      "Assessing the strength of the 7th house and Venus/Jupiter alignments."
+    ],
+    "faqs": [
+      {
+        "question": "What is a good Gun Milan score for marriage?",
+        "answer": "A score above 18 out of 36 is generally acceptable, while 24 to 32 is considered excellent. However, a high score alone does not guarantee success if the individual 7th houses or Dasha periods are highly conflicting."
+      },
+      {
+        "question": "Can marriage astrology help if we are already experiencing marital discord?",
+        "answer": "Absolutely. It helps you understand if the conflict is a temporary transition due to a difficult planetary Dasha or if there are structural mismatches that require specific gemological or mantra remedies."
+      }
+    ]
+  },
+  {
+    "slug": "love",
+    "title": "Love & Relationships",
+    "icon": "Heart",
+    "sanskrit": "प्रेम सम्बन्ध",
+    "shortDescription": "Navigate emotional blockages, understand relationship dynamics, and align your love life with the stars.",
+    "description": "Love and attraction are ruled by Venus, the Moon, and the 5th House of your birth chart. When these elements are compromised or aspected by retrogrades, relationships can feel unstable or unrequited. Our love astrology consultation offers deep insights into your emotional needs, partner dynamics, and future romantic cycles.",
+    "benefits": [
+      "Determine if your current partner is cosmically aligned for a long-term future.",
+      "Discover the periods when your romantic aura is at its peak for attracting love.",
+      "Heal emotional wounds and resolve recurring toxic relationship patterns."
+    ],
+    "problemsSolved": [
+      "Unrequited love, sudden breakups, or lack of emotional reciprocity.",
+      "Repetitive patterns of choosing partners who are emotionally unavailable.",
+      "Inability to overcome past heartbreaks and open up to new relationships."
+    ],
+    "process": [
+      "Analyzing the 5th House (Love) and 9th House (Fortune) connection.",
+      "Evaluating Venus, Mars, and Moon positions for emotional intelligence.",
+      "Providing customized remedies for emotional healing and aura strengthening."
+    ],
+    "faqs": [
+      {
+        "question": "Why do I keep attracting the same type of hurtful relationships?",
+        "answer": "This is often linked to the placement of Ketu or Saturn in your 5th or 7th house, indicating karmic lessons. Identifying these lessons allows you to break the cycle."
+      }
+    ]
+  },
+  {
+    "slug": "business",
+    "title": "Business & Wealth",
+    "icon": "TrendingUp",
+    "sanskrit": "व्यापार लक्ष्मी",
+    "shortDescription": "Enhance your financial destiny. Learn the best sectors for business, auspicious launch dates, and wealth-generation periods.",
+    "description": "Vedic wealth analysis focuses on the 2nd House (Dhana Bhava - accumulated wealth), 11th House (Labha Bhava - gains and profits), and the 7th House (partnerships and commercial trading). Through custom charts, we map out business success ratios, partnership compatibility, and identify Dhana Yogas that can elevate your net worth.",
+    "benefits": [
+      "Minimize financial risk by launching businesses during positive planetary transits (Muhurtha).",
+      "Choose business partners whose birth charts complement and boost your financial luck.",
+      "Maximize returns by investing in industries aligned with your ruling planets."
+    ],
+    "problemsSolved": [
+      "Persistent cash flow blockages, bad debts, or sudden destruction of wealth.",
+      "Partnership disputes, trust issues, and legal battles in business.",
+      "Struggles with scaling a business or choosing the wrong line of products."
+    ],
+    "process": [
+      "Evaluating Dhana Yogas and Daridra Yogas in the birth chart.",
+      "Analyzing the strength of the 7th and 11th houses.",
+      "Determining auspicious dates (Shubh Muhurtha) for business launch."
+    ],
+    "faqs": [
+      {
+        "question": "Which planets rule business and trading?",
+        "answer": "Mercury represents intellect, communication, and commerce. Jupiter represents expansion and finance. A strong Mercury is crucial for successful retail, trading, and consulting businesses."
+      }
+    ]
+  },
+  {
+    "slug": "health",
+    "title": "Health & Vitality",
+    "icon": "ShieldAlert",
+    "sanskrit": "आरोग्य जीवन",
+    "shortDescription": "Understand your physical constitution through the 6th House. Get planetary insights on well-being and preventive remedies.",
+    "description": "Your physical vessel is mapped via the 1st House (Lagna - self/body) and the 6th House (Roga Bhava - disease). Understanding which planets govern your health profile helps you align your diet, lifestyle, and mental state. We identify vulnerable organs and periods of physical vulnerability to guide you toward holistic preventive wellness.",
+    "benefits": [
+      "Discover underlying planetary imbalances before they manifest as chronic physical symptoms.",
+      "Align your wellness routines with your astrological constitution (Ayur-Astrology).",
+      "Find spiritual support systems to complement medical treatments during major recovery periods."
+    ],
+    "problemsSolved": [
+      "Undiagnosed health issues that escape modern clinical tests.",
+      "Low energy levels, chronic fatigue, and constant mental anxiety.",
+      "Recurring accidents, surgeries, or prolonged healing delays."
+    ],
+    "process": [
+      "Assessing the strength of the Ascendant (Lagna) and the Sun (Karaka of health).",
+      "Analyzing the 6th and 8th houses for potential chronic alignments.",
+      "Prescribing Ayurvedic astrological remedies, mantras, and lifestyle shifts."
+    ],
+    "faqs": [
+      {
+        "question": "Can astrology cure medical illnesses?",
+        "answer": "Astrology does not replace medical science. It acts as a diagnostic aid to understand spiritual and energetic roots, assisting medical treatments with remedies to lower resistance and speed up recovery."
+      }
+    ]
+  },
+  {
+    "slug": "education",
+    "title": "Education & Focus",
+    "icon": "GraduationCap",
+    "sanskrit": "विद्या प्राप्ति",
+    "shortDescription": "Unlock academic potential, choose ideal study fields, and resolve concentration blockages.",
+    "description": "Academic success is determined by the 4th House (basic education), 5th House (intelligence/intellect), and the placement of Mercury and Jupiter. We analyze these key factors to provide guidance on exam preparation, higher studies options, and methods to boost concentration.",
+    "benefits": [
+      "Select the right streams of study (STEM, Arts, Commerce) that naturally align with your intellect.",
+      "Identify the best times for competitive exams to secure admissions.",
+      "Adopt customized mental focus techniques based on your Moon sign."
+    ],
+    "problemsSolved": [
+      "Lack of focus, memory issues, or exam anxiety.",
+      "Frequent changes in academic streams and confusion about career choices.",
+      "Obstacles in higher education or failure in competitive exams."
+    ],
+    "process": [
+      "Evaluating the 4th and 5th houses, and Mercury (Budha).",
+      "Analyzing the transition of Jupiter (Guru) for guidance.",
+      "Suggesting Saraswati Mantras and student-specific gemstone remedies."
+    ],
+    "faqs": [
+      {
+        "question": "How can astrology help my child focus on studies?",
+        "answer": "By identifying if Mercury is combust or weak, we can recommend simple tasks, such as chanting or wearing green, to stabilize mental fluctuations."
+      }
+    ]
+  },
+  {
+    "slug": "foreign-settlement",
+    "title": "Foreign Settlement",
+    "icon": "Globe",
+    "sanskrit": "विदेश गमन",
+    "shortDescription": "Analyze travel prospects, visa approvals, and foreign career success using the 8th and 12th Houses.",
+    "description": "In Vedic astrology, foreign travel and settlement are governed by the 9th House (long journeys) and the 12th House (foreign lands/settlement). If these houses are strong and connected to your career house, it signals immense growth and success away from your birthplace.",
+    "benefits": [
+      "Know if your visa application will succeed and the ideal time to apply.",
+      "Determine whether relocating abroad will bring prosperity or struggle.",
+      "Find timing for overseas studies, permanent residency (PR), or international jobs."
+    ],
+    "problemsSolved": [
+      "Repeated visa rejections without logical justification.",
+      "Struggles and loneliness in foreign lands without financial stability.",
+      "Delays in obtaining green cards or permanent residency."
+    ],
+    "process": [
+      "Analyzing the 9th, 12th, and 8th (unexpected gains) houses.",
+      "Checking Rahu and Saturn positions (which govern foreign contacts).",
+      "Evaluating current Dasha periods for international migration."
+    ],
+    "faqs": [
+      {
+        "question": "Which planet is responsible for foreign travel?",
+        "answer": "Rahu is the primary significator of foreign lands and cultures. When Rahu is associated with the 9th or 12th house, it strongly triggers overseas movement."
+      }
+    ]
+  },
+  {
+    "slug": "manglik",
+    "title": "Manglik Dosha Analysis",
+    "icon": "Flame",
+    "sanskrit": "मांगलिक विचार",
+    "shortDescription": "Identify Mars' fiery placements in your chart, check for exceptions, and get peace-promoting remedies.",
+    "description": "Manglik Dosha (Kuja Dosha) occurs when Mars is placed in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Ascendant. It is often feared, but in reality, over 70% of charts contain cancellations or neutralizations. We offer realistic, scientific chart reviews to demystify Mars' energy.",
+    "benefits": [
+      "Determine if your Manglik Dosha is fully cancelled by other planetary strengths.",
+      "Understand how to direct the high energy of Mars into constructive career and fitness channels.",
+      "Get authentic remedies like Kumbh Vivah or specific charity rituals to ease marital tensions."
+    ],
+    "problemsSolved": [
+      "Fear of rejection in marriage proposals due to Manglik tag.",
+      "Unnecessary delays in finalizing proposals because of planetary placement.",
+      "Aggression, power struggles, and lack of peace in relationships."
+    ],
+    "process": [
+      "Checking Mars' placement across Ascendant, Moon, and Venus charts.",
+      "Analyzing cancellation rules (e.g., Mars in own signs, Jupiter aspect).",
+      "Recommending precise pacifying procedures."
+    ],
+    "faqs": [
+      {
+        "question": "Does Manglik Dosha automatically disappear after age 28?",
+        "answer": "Mars' intensity softens as maturity increases, but the dosha does not vanish. A structured chart review is still advised to see how the energy behaves post-28."
+      }
+    ]
+  },
+  {
+    "slug": "kundli",
+    "title": "Kundli Reading & Analysis",
+    "icon": "Compass",
+    "sanskrit": "जन्म कुंडली",
+    "shortDescription": "Comprehensive analysis of your birth chart (D1), planetary strengths, and Vimshottari Dasha timeline.",
+    "description": "A classic, comprehensive Vedic astrology reading mapping your life path, major blockages, and potential. We cover your physical traits, wealth prospects, health, family, career, and spiritual evolution over the next 10-20 years.",
+    "benefits": [
+      "Get a complete roadmap of your life cycles.",
+      "Understand your strengths (Yogas) and vulnerabilities (Doshas).",
+      "Receive tailored remedies to smooth out challenging life phases."
+    ],
+    "problemsSolved": [
+      "Lack of general direction or purpose in life.",
+      "Inability to understand why certain phases of life are highly challenging.",
+      "Need for a deep spiritual self-discovery session."
+    ],
+    "process": [
+      "Verification of birth details and rectifying birth time if needed.",
+      "Detailed review of all 12 houses and planetary aspects.",
+      "Analysis of Vimshottari Dasha and transit maps."
+    ],
+    "faqs": [
+      {
+        "question": "What details are required for a Kundli reading?",
+        "answer": "You need your exact Date of Birth, Time of Birth (with minutes), and Place of Birth. Accurate time is crucial for ascendant calculations."
+      }
+    ]
+  },
+  {
+    "slug": "gemstone",
+    "title": "Gemstone Recommendation",
+    "icon": "Gem",
+    "sanskrit": "रत्न धारण",
+    "shortDescription": "Strengthen beneficial planets. Get recommendations for weight, metal, and wearing rituals.",
+    "description": "Gemstones emit distinct electromagnetic wavelengths that interact with the human aura. Wearing the correct gemstone (like Blue Sapphire, Ruby, or Yellow Sapphire) can strengthen your positive planets (Anukul Graha). However, wearing the wrong gem can trigger health and financial downfalls.",
+    "benefits": [
+      "Amplify your luck, focus, and physical energy safely.",
+      "Ensure you do not accidentally wear a stone that triggers enemy houses.",
+      "Learn the precise purification and activation ritual before wearing."
+    ],
+    "problemsSolved": [
+      "Wearing random gems based solely on sun signs that cause side effects.",
+      "Stagnant career growth and low vitality.",
+      "Lack of focus and continuous bad luck."
+    ],
+    "process": [
+      "Identifying your life-supporting planets (Lagna, 5th, and 9th lords).",
+      "Checking planet combustion, retrogression, or weakness.",
+      "Determining the exact gemstone, weight, finger, and day."
+    ],
+    "faqs": [
+      {
+        "question": "Can I wear two gemstones together?",
+        "answer": "Yes, but they must belong to friendly planetary groups. For example, Ruby (Sun) and Blue Sapphire (Saturn) should never be worn together."
+      }
+    ]
+  },
+  {
+    "slug": "numerology",
+    "title": "Numerology & Name Correction",
+    "icon": "Binary",
+    "sanskrit": "अंक ज्योतिष",
+    "shortDescription": "Align your name vibration with your birth date. Enhance career luck and personal branding.",
+    "description": "Numbers carry unique vibrational frequencies. By calculating your Life Path, Destiny, and Soul Urge numbers, we find if your current name spelling creates harmony or conflict with your birth date. A simple correction can open up new opportunities.",
+    "benefits": [
+      "Harmonize your business name with your birth path to attract customers.",
+      "Improve your name spelling for social popularity and legal documents.",
+      "Select lucky mobile numbers, vehicle license plates, and house numbers."
+    ],
+    "problemsSolved": [
+      "Despite hard work, efforts do not translate into financial success.",
+      "Constant friction in partnerships and public relationships.",
+      "Low self-confidence and feeling out of sync with opportunities."
+    ],
+    "process": [
+      "Calculating Chaldean and Pythagorean numerology values.",
+      "Analyzing birth grid (Loshu Grid) to see missing numbers.",
+      "Suggesting spelling changes for maximum vibrational resonance."
+    ],
+    "faqs": [
+      {
+        "question": "Do I need to change my name legally for it to work?",
+        "answer": "No. Start writing the new spelling daily on paper and using it on social media. Once the vibration is active, legal changes can follow."
+      }
+    ]
+  },
+  {
+    "slug": "vastu",
+    "title": "Vastu Shastra Consultation",
+    "icon": "Home",
+    "sanskrit": "वास्तु शास्त्र",
+    "shortDescription": "Harmonize your living and working spaces with the five elements for health and prosperity.",
+    "description": "Vastu Shastra is the ancient Vedic science of architecture. It balances the five elements (Earth, Water, Fire, Air, Space) in your home or office. Proper Vastu alignment attracts positive energy (Prana), improves family health, and boosts commercial profits.",
+    "benefits": [
+      "Establish peace and remove constant arguments in the household.",
+      "Enhance financial inflow by correcting key corners (North-East and South-West).",
+      "Design commercial layouts that boost employee productivity and client sales."
+    ],
+    "problemsSolved": [
+      "Frequent illnesses in the family without medical explanation.",
+      "Stagnation in business profits and high employee turnover.",
+      "Insomnia, stress, and lack of peace in the home."
+    ],
+    "process": [
+      "Reviewing layout maps of your home or office.",
+      "Identifying elemental imbalances (e.g., kitchen in North-East).",
+      "Suggesting non-destructive remedies using mirrors, colors, and metal rods."
+    ],
+    "faqs": [
+      {
+        "question": "Can Vastu remedies be done without breaking walls?",
+        "answer": "Yes. Over 90% of Vastu issues can be resolved using elemental correctors, color adjustments, crystals, and pyramids without structural demolition."
+      }
+    ]
+  },
+  {
+    "slug": "palmistry",
+    "title": "Palmistry & Hand Analysis",
+    "icon": "Hand",
+    "sanskrit": "हस्तरेखा ज्ञान",
+    "shortDescription": "Read the map of your subconscious written on your hands. Discover life timelines and health alerts.",
+    "description": "Your palm is a physical mirror of your brain. The lines, mounts, and signs on your hand change as your thoughts and actions evolve. We study both active and passive hands to predict health, marriage timelines, and career shifts.",
+    "benefits": [
+      "Confirm predictions made in your birth chart.",
+      "Identify sudden breaks or extensions in your life/career line.",
+      "Recognize warnings of burnout or health issues before they occur."
+    ],
+    "problemsSolved": [
+      "Absence of a birth chart or inaccurate birth details.",
+      "Need to confirm major life timeline shifts.",
+      "Curiosity about specific marks like the Mystic Cross or fish signs."
+    ],
+    "process": [
+      "Analysis of hand shape, texture, and mount strengths.",
+      "Detailed reading of Heart, Head, Life, and Fate lines.",
+      "Identifying unique auspicious markings."
+    ],
+    "faqs": [
+      {
+        "question": "Which hand should be read for predictions?",
+        "answer": "We read both. The passive hand reveals inherited traits and potential, while the active (dominant) hand shows how you have shaped your destiny."
+      }
+    ]
+  },
+  {
+    "slug": "face-reading",
+    "title": "Physiognomy & Face Reading",
+    "icon": "Eye",
+    "sanskrit": "सामुद्रिक शास्त्र",
+    "shortDescription": "Understand character, career path, and health indicators through facial features.",
+    "description": "Face reading (Samudrika Shastra) is the art of analyzing facial structure, forehead lines, eye shape, and nose type to understand a person's inner nature, past experiences, and future destiny. It is highly useful for business profiling and self-understanding.",
+    "benefits": [
+      "Assess a business partner's trustworthiness and work ethic quickly.",
+      "Understand your own emotional tendencies and communication style.",
+      "Gain insights into major fortune age milestones represented on the face."
+    ],
+    "problemsSolved": [
+      "Lack of birth details for traditional chart reading.",
+      "Need for rapid character assessments in hiring or negotiations.",
+      "Desire to understand deep personal behavioral patterns."
+    ],
+    "process": [
+      "Analyzing face shapes (Wood, Fire, Earth, Metal, Water types).",
+      "Evaluating the 12 palaces of the face (Career, Wealth, Parents).",
+      "Reading dynamic lines on the forehead and eyes."
+    ],
+    "faqs": [
+      {
+        "question": "Can cosmetic surgeries change your destiny?",
+        "answer": "Vedic philosophy says that while changing a physical feature shifts the superficial energy flow, true destiny changes only when internal thoughts change."
+      }
+    ]
+  },
+  {
+    "slug": "tarot",
+    "title": "Tarot Card Reading",
+    "icon": "Layers",
+    "sanskrit": "टैरो कार्ड",
+    "shortDescription": "Get immediate clarity on urgent life decisions, relationship states, and weekly directions.",
+    "description": "While Vedic astrology takes a long-term view of your life, Tarot card reading taps into the immediate energetic frequency of the present moment. It is perfect for resolving urgent questions, understanding hidden motivations, and deciding between two pathways.",
+    "benefits": [
+      "Get clear answers to yes/no questions or complex choices.",
+      "Uncover hidden thoughts or obstacles in your partner's mind.",
+      "Find advice and direction for your immediate next steps."
+    ],
+    "problemsSolved": [
+      "Feeling stuck at a crossroads with no clear path forward.",
+      "Anxiety about how a specific interview or conversation will turn out.",
+      "Need for psychological clarity on a complex situation."
+    ],
+    "process": [
+      "Formulating precise questions to get maximum clarity.",
+      "Selecting a custom card spread (Celtic Cross, Three-Card Spread).",
+      "Interpreting the cards in relation to your current situation."
+    ],
+    "faqs": [
+      {
+        "question": "Can Tarot predict the exact future?",
+        "answer": "Tarot shows the most likely outcome based on your current energy. You have free will; if you change your actions, you can change the outcome."
+      }
+    ]
+  },
+  {
+    "slug": "yantra",
+    "title": "Yantra & Mantra Sadhana",
+    "icon": "Disc",
+    "sanskrit": "यंत्र मंत्र साधना",
+    "shortDescription": "Install sacred geometric maps and chant customized sound frequencies for planetary pacification.",
+    "description": "Yantras are sacred geometric diagrams that represent cosmic energy portals. Mantras are specific sound frequencies that rewire the neural pathways. Together, they form the most powerful spiritual shield in Vedic remedies to protect against negativity.",
+    "benefits": [
+      "Shield your home and office from evil eye, jealousy, and negative energies.",
+      "Align your brain frequency to attract wealth, peace, and wisdom.",
+      "Create a calm environment at home for children and family members."
+    ],
+    "problemsSolved": [
+      "Constant negative thoughts, depression, and unexplained fear.",
+      "Disagreements and heavy blockages at home.",
+      "Slow progress in career or spiritual paths."
+    ],
+    "process": [
+      "Identifying the active negative planets in your chart.",
+      "Selecting the correct Yantra (e.g., Shri Yantra, Vyapar Vridhi Yantra).",
+      "Providing pronunciation instructions for personalized Mantras."
+    ],
+    "faqs": [
+      {
+        "question": "Do I need to energize a Yantra before installing it?",
+        "answer": "Yes. A Yantra must be purified with milk/water and activated with its specific Beej Mantra on an auspicious day to make it energetically active."
+      }
+    ]
+  },
+  {
+    "slug": "rudraksha",
+    "title": "Rudraksha Recommendation",
+    "icon": "Fingerprint",
+    "sanskrit": "रुद्राक्ष धारण",
+    "shortDescription": "Find the correct bead (1 to 21 Mukhi) corresponding to your birth chart for mental strength.",
+    "description": "Rudraksha beads are the tears of Lord Shiva, possessing remarkable electromagnetic properties. Different mukhis (faces) of Rudraksha carry frequencies that pacify specific planets. We analyze your chart to recommend the correct combination.",
+    "benefits": [
+      "Stabilize blood pressure, reduce stress, and improve heart health.",
+      "Overcome the malefic effects of Rahu, Ketu, and Saturn (Shani).",
+      "Improve focus, intellect, and physical strength."
+    ],
+    "problemsSolved": [
+      "Wearing fake or chemically treated beads that do not work.",
+      "High anxiety, fear, and lack of mental control.",
+      "Sade Sati (Saturn transit) difficulties."
+    ],
+    "process": [
+      "Evaluating Saturn, Rahu, and Ketu transit positions.",
+      "Determining the ruling planet of your Lagna and Nakshatra.",
+      "Recommending the correct Mukhi bead and its wearing method."
+    ],
+    "faqs": [
+      {
+        "question": "Can anyone wear Rudraksha?",
+        "answer": "Yes. Anyone can wear Rudraksha regardless of gender or belief. The only condition is maintaining cleanliness and respect for the sacred beads."
+      }
+    ]
+  }
+]
