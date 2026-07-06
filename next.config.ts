@@ -3,21 +3,21 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      {
-        source: '/about',
-        destination: '/',
-        permanent: false,
-      },
+      // {
+      //   source: '/about',
+      //   destination: '/',
+      //   permanent: false,
+      // },
       {
         source: '/services/:path*',
         destination: '/',
         permanent: false,
       },
-      {
-        source: '/kundli',
-        destination: '/',
-        permanent: false,
-      },
+      // {
+      //   source: '/kundli',
+      //   destination: '/',
+      //   permanent: false,
+      // },
       {
         source: '/horoscope',
         destination: '/',
