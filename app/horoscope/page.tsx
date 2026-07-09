@@ -100,6 +100,33 @@ export default function HoroscopeDashboard() {
 
   const activeForecast = FORECAST_DETAILS[selectedSign.name] || FORECAST_DETAILS.Aries;
 
+  const getDateDisplay = () => {
+    const today = new Date();
+    
+    if (timeframe === 'Daily') {
+      return today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+    
+    if (timeframe === 'Weekly') {
+      const day = today.getDay();
+      const diff = today.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+      const startOfWeek = new Date(today.setDate(diff));
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      
+      return `${startOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    }
+    
+    if (timeframe === 'Monthly') {
+      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      
+      return `${startOfMonth.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endOfMonth.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    }
+    
+    return '';
+  };
+
   return (
     <div className="w-full relative py-20 px-6">
       {/* Glow backgrounds */}
@@ -155,12 +182,14 @@ export default function HoroscopeDashboard() {
               <div className="flex flex-col">
                 <h2 className="font-cinzel text-2xl font-bold text-white leading-none">{selectedSign.name}</h2>
                 <span className="font-devanagari text-xs text-secondary mt-1 font-medium">{selectedSign.sanskrit} Rashi</span>
-                <span className="font-inter text-[10px] text-slate-500 uppercase tracking-widest mt-1">{selectedSign.range}</span>
+                <span suppressHydrationWarning className="font-inter text-[10px] text-slate-500 uppercase tracking-widest mt-1">
+                  {getDateDisplay()}
+                </span>
               </div>
               
               {/* Selector for Daily / Weekly / Monthly */}
               <div className="flex w-full bg-white/5 rounded-full p-1 border border-white/5 text-xs font-inter mt-4">
-                {(['Daily', 'Weekly', 'Monthly'] as const).map((t) => (
+                {(['Daily' /*, 'Weekly', 'Monthly'*/] as const).map((t) => (
                   <button
                     key={t}
                     onClick={() => setTimeframe(t)}
