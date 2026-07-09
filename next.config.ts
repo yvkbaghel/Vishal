@@ -18,11 +18,11 @@ const nextConfig: NextConfig = {
       //   destination: '/',
       //   permanent: false,
       // },
-      {
-        source: '/horoscope',
-        destination: '/',
-        permanent: false,
-      },
+      // {
+      //   source: '/horoscope',
+      //   destination: '/',
+      //   permanent: false,
+      // },
       {
         source: '/blog/:path*',
         destination: '/',
@@ -43,11 +43,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: false,
       },
-      {
-        source: '/booking',
-        destination: '/',
-        permanent: false,
-      },
+      // {
+      //   source: '/booking',
+      //   destination: '/',
+      //   permanent: false,
+      // },
     ];
   },
 };
