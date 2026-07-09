@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Sparkles, Calendar, Clock, MapPin, User, Compass, HelpCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, User, Compass } from 'lucide-react';
+import { ChartData } from '@/lib/astrology';
 
 export default function KundliPage() {
   const [formData, setFormData] = useState({
@@ -14,23 +15,60 @@ export default function KundliPage() {
     pob: '',
   });
 
-  const [generated, setGenerated] = useState(false);
+  const [chartData, setChartData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleGenerate = (e: React.FormEvent) => {
+  const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.dob || !formData.tob || !formData.pob) return;
 
     setLoading(true);
-    setTimeout(() => {
+    setErrorMsg('');
+    setChartData(null);
+
+    try {
+      // 1. Geocode Place of Birth using OpenStreetMap Nominatim
+      const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(formData.pob)}&format=json&limit=1`);
+      const geoData = await geoRes.json();
+      
+      if (!geoData || geoData.length === 0) {
+        throw new Error("Could not find coordinates for this location.");
+      }
+      
+      const lat = geoData[0].lat;
+      const lon = geoData[0].lon;
+
+      // 2. Fetch astrological data
+      const chartRes = await fetch(`/api/kundli?date=${formData.dob}&time=${formData.tob}&lat=${lat}&lng=${lon}`);
+      if (!chartRes.ok) {
+        throw new Error("Failed to calculate birth chart");
+      }
+      const data: ChartData = await chartRes.json();
+      setChartData(data);
+    } catch (err: any) {
+      setErrorMsg(err.message || 'An error occurred');
+    } finally {
       setLoading(false);
-      setGenerated(true);
-    }, 1500); // Simulated calculations
+    }
+  };
+
+  // Helper to get planets for a house
+  const getHousePlanets = (houseNum: number) => {
+    if (!chartData) return "";
+    const house = chartData.houses.find(h => h.houseNumber === houseNum);
+    return house ? house.planets.join(', ') : "";
+  };
+
+  const getHouseSign = (houseNum: number) => {
+    if (!chartData) return "";
+    const house = chartData.houses.find(h => h.houseNumber === houseNum);
+    return house ? (house.sign + 1).toString() : ""; // Zodiac sign number (1=Aries)
   };
 
   return (
@@ -52,7 +90,7 @@ export default function KundliPage() {
             Vedic Kundli Generator
           </h1>
           <p className="font-cormorant text-lg sm:text-xl text-slate-300 max-w-2xl italic leading-relaxed">
-            Enter your exact birth parameters to compute your planetary coordinates and render your D1 Birth Chart (Lagna Kundli) with lineage Vedic interpretations.
+            Enter your exact birth parameters to compute your planetary coordinates and render your D1 Birth Chart (Lagna Kundli) with dynamic Vedic interpretations.
           </p>
         </div>
 
@@ -159,6 +197,12 @@ export default function KundliPage() {
                   </div>
                 </div>
 
+                {errorMsg && (
+                  <div className="text-red-400 text-xs font-inter mt-2">
+                    {errorMsg}
+                  </div>
+                )}
+
                 <button
                   type="submit"
                   disabled={loading}
@@ -167,7 +211,7 @@ export default function KundliPage() {
                   {loading ? (
                     <>
                       <div className="w-4.5 h-4.5 border-2 border-[#050816] border-t-transparent rounded-full animate-spin" />
-                      <span>Recalculating Stars...</span>
+                      <span>Aligning Stars...</span>
                     </>
                   ) : (
                     <span>Generate Birth Chart</span>
@@ -179,7 +223,7 @@ export default function KundliPage() {
 
           {/* Right Column: Chart and Interpretation Output */}
           <div className="lg:col-span-7">
-            {generated ? (
+            {chartData ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -225,39 +269,54 @@ export default function KundliPage() {
                       <line x1="150" y1="290" x2="290" y2="150" className="stroke-secondary/40 stroke-[1.5]" />
                       <line x1="290" y1="150" x2="150" y2="10" className="stroke-secondary/40 stroke-[1.5]" />
 
-                      {/* Center Diamond (Lagna) Label */}
-                      <text x="150" y="100" textAnchor="middle" className="fill-secondary/80 font-cinzel text-[10px] font-bold">ASC (1)</text>
-                      <text x="150" y="80" textAnchor="middle" className="fill-white font-inter text-[12px] font-bold">Su, Me</text>
+                      {/* Center Diamond (Lagna) Label - House 1 */}
+                      <text x="150" y="100" textAnchor="middle" className="fill-secondary/80 font-cinzel text-[10px] font-bold">ASC ({getHouseSign(1)})</text>
+                      <text x="150" y="80" textAnchor="middle" className="fill-white font-inter text-[12px] font-bold">{getHousePlanets(1)}</text>
 
-                      {/* Other House Planetary Labels */}
-                      <text x="90" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 12</text>
-                      <text x="90" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Sa</text>
+                      {/* House 2: Top-Left */}
+                      <text x="90" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(2)}</text>
+                      <text x="90" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(2)}</text>
 
-                      <text x="210" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 2</text>
-                      <text x="210" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Ke</text>
+                      {/* House 3: Left-Top */}
+                      <text x="55" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(3)}</text>
+                      <text x="55" y="110" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(3)}</text>
 
-                      <text x="245" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 3</text>
-                      <text x="245" y="110" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Ve</text>
+                      {/* House 4: Left Diamond */}
+                      <text x="100" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(4)}</text>
+                      <text x="100" y="175" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(4)}</text>
 
-                      <text x="200" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 4</text>
-                      <text x="200" y="175" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Ju</text>
-
-                      <text x="245" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 5</text>
+                      {/* House 5: Left-Bottom */}
+                      <text x="55" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(5)}</text>
+                      <text x="55" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(5)}</text>
                       
-                      <text x="210" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 6</text>
+                      {/* House 6: Bottom-Left */}
+                      <text x="90" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(6)}</text>
+                      <text x="90" y="275" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(6)}</text>
 
-                      <text x="150" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 7</text>
-                      <text x="150" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Mo</text>
+                      {/* House 7: Bottom Diamond */}
+                      <text x="150" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(7)}</text>
+                      <text x="150" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(7)}</text>
 
-                      <text x="90" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 8</text>
-                      <text x="90" y="275" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Ra</text>
+                      {/* House 8: Bottom-Right */}
+                      <text x="210" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(8)}</text>
+                      <text x="210" y="275" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(8)}</text>
 
-                      <text x="55" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 9</text>
-                      <text x="55" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">Ma</text>
+                      {/* House 9: Right-Bottom */}
+                      <text x="245" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(9)}</text>
+                      <text x="245" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(9)}</text>
 
-                      <text x="100" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 10</text>
+                      {/* House 10: Right Diamond */}
+                      <text x="200" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(10)}</text>
+                      <text x="200" y="175" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(10)}</text>
 
-                      <text x="55" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">House 11</text>
+                      {/* House 11: Right-Top */}
+                      <text x="245" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(11)}</text>
+                      <text x="245" y="110" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(11)}</text>
+
+                      {/* House 12: Top-Right */}
+                      <text x="210" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(12)}</text>
+                      <text x="210" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(12)}</text>
+
                     </svg>
                     <span className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-widest text-slate-500 font-inter">
                       Lagna Kundli (D1)
@@ -270,23 +329,23 @@ export default function KundliPage() {
                     <div className="flex flex-col gap-2 border-y border-white/5 py-4">
                       <div className="flex justify-between">
                         <span>Ascendant (Lagna)</span>
-                        <span className="text-white font-bold">Leo (Simha) • 14°22&apos;</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Nakshatra</span>
-                        <span className="text-white font-bold">Magha • Pada 3</span>
+                        <span className="text-white font-bold">{chartData.ascendant.signName} • {Math.floor(chartData.ascendant.degree)}°</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Moon Sign (Rashi)</span>
-                        <span className="text-white font-bold">Leo (Simha)</span>
+                        <span className="text-white font-bold">{chartData.planets.find(p => p.name === 'Moon')?.signName}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Sun Sign</span>
-                        <span className="text-white font-bold">Gemini (Mithuna)</span>
+                        <span className="text-white font-bold">{chartData.planets.find(p => p.name === 'Sun')?.signName}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Lagna Lord</span>
+                        <span className="text-white font-bold">{chartData.planets.find(p => p.house === 1)?.name || "Empty"}</span>
                       </div>
                     </div>
                     <div className="bg-primary/10 border border-primary/20 p-3.5 rounded-lg text-[10px] leading-relaxed text-secondary">
-                      Your chart indicates a strong **Sun-Mercury Budhaditya Yoga** in the Ascendant, promising high administrative capabilities and public influence.
+                      Your dynamically calculated D1 chart is ready. The mathematical Ascendant and planetary geometries have been successfully computed based on precise sidereal ephemeris data.
                     </div>
                   </div>
                 </div>
@@ -295,15 +354,15 @@ export default function KundliPage() {
                 <div className="glass rounded-xl p-8 border border-white/5 flex flex-col gap-4 leading-relaxed text-slate-300 font-inter text-xs">
                   <h3 className="font-cinzel text-sm font-bold text-white mb-2 uppercase tracking-widest">Initial Vedic Interpretations</h3>
                   <div>
-                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">1. Personality Profile (Ascendant in Leo)</span>
+                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">1. Personality Profile (Ascendant in {chartData.ascendant.signName})</span>
                     <p>
-                      You carry a majestic presence. Since Leo is ruled by the Sun, you have high self-esteem, are natural leaders, and respect authority. However, watch out for ego clashes or unnecessary dominance patterns in partnerships.
+                      Your Ascendant (Lagna) is {chartData.ascendant.signName}. This defines your primary outward personality, constitution, and general approach to life.
                     </p>
                   </div>
                   <div>
-                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">2. Career Direction (10th House alignment)</span>
+                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">2. Emotional Foundation (Moon in {chartData.planets.find(p => p.name === 'Moon')?.signName})</span>
                     <p>
-                      With Jupiter governing your academic parameters and Saturn transiting supportive houses, business ownership or high-responsibility employment is highlighted. Mid-2026 onwards represents an auspicious window for major switches.
+                      With the Moon placed in {chartData.planets.find(p => p.name === 'Moon')?.signName}, your subconscious mind and emotional reactions are heavily influenced by this sign&apos;s traits.
                     </p>
                   </div>
                   <div className="bg-secondary/5 border border-secondary/15 p-4 rounded-lg mt-4 flex items-center justify-between gap-4">
