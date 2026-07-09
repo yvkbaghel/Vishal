@@ -37,20 +37,8 @@ export default function ZodiacWheel() {
         <circle cx="200" cy="200" r="180" className="fill-none stroke-secondary/20 stroke-[1] stroke-dasharray-[2,4]" />
         <circle cx="200" cy="200" r="172" className="fill-none stroke-secondary/40 stroke-[1.5]" />
         
-        {/* Inner center ring */}
-        <circle cx="200" cy="200" r="50" className="fill-[#111827] stroke-secondary/50 stroke-[2]" />
-        <circle cx="200" cy="200" r="45" className="fill-none stroke-secondary/30 stroke-[1]" />
-        
-        {/* Center Symbol - Vedic Lotus Mandala */}
-        <path
-          d="M 200 180 C 195 190 195 195 200 200 C 205 195 205 190 200 180 Z 
-             M 200 220 C 195 210 195 205 200 200 C 205 205 205 210 200 220 Z
-             M 180 200 C 190 195 195 195 200 200 C 195 205 190 205 180 200 Z
-             M 220 200 C 210 195 205 195 200 200 C 205 205 210 205 220 200 Z
-             M 186 186 C 194 191 197 194 200 200 C 197 206 194 209 186 186 Z
-             M 214 214 C 206 209 203 206 200 200 C 203 194 206 191 214 214 Z"
-          className="fill-secondary/70 stroke-secondary stroke-[0.5]"
-        />
+        {/* Inner center ring border to contain the inner Rudraksh mala */}
+        <circle cx="200" cy="200" r="70" className="fill-[#050816] stroke-secondary/30 stroke-[1.5]" />
 
         {/* 12 Divisions and Zodiac Symbols */}
         {ZODIAC_SIGNS.map((sign, index) => {
@@ -121,21 +109,7 @@ export default function ZodiacWheel() {
         })}
       </svg>
 
-      {/* Floating Center Panel showing hovered sign details */}
-      <div className="absolute inset-0 m-auto w-[90px] h-[90px] rounded-full flex flex-col items-center justify-center text-center pointer-events-none z-10">
-        {hoveredSign ? (
-          <div className="flex flex-col items-center transition-all duration-300 animate-fadeIn">
-            <span className="text-secondary text-sm font-cinzel font-bold">{hoveredSign.english}</span>
-            <span className="text-white text-[10px] font-devanagari mt-0.5">{hoveredSign.sanskrit}</span>
-            <span className="text-muted-cosmic text-[8px] tracking-wider uppercase mt-1">Lord: {hoveredSign.lord}</span>
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center">
-            <span className="text-secondary/80 text-[10px] font-cinzel tracking-widest uppercase">VEDA</span>
-            <span className="text-white/60 text-[8px] uppercase tracking-tighter">ASTRO</span>
-          </div>
-        )}
-      </div>
+
     </div>
   );
 }

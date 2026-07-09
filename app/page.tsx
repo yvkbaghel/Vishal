@@ -1,20 +1,25 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Sparkles, CheckCircle2, ChevronDown, Award, Users, 
   Map, Star, ArrowRight, Play, BookOpen, AlertCircle,
   Briefcase, HeartHandshake, Heart, TrendingUp, ShieldAlert,
   GraduationCap, Globe, Flame, Compass, Gem, Binary, Home as HomeIcon,
-  Hand, Eye, Layers, Disc, Fingerprint
+  Hand, Eye, Layers, Disc, Fingerprint, Pause, Volume2, VolumeX
 } from 'lucide-react';
 import servicesData from '@/data/services.json';
 import blogsData from '@/data/blogs.json';
 import dynamic from 'next/dynamic';
 
 const ZodiacWheel = dynamic(() => import('@/components/ZodiacWheel'), {
+  ssr: false,
+  loading: () => <div className="w-full max-w-[450px] aspect-square rounded-full bg-white/5 animate-pulse" />
+});
+
+const RudrakshMala = dynamic(() => import('@/components/RudrakshMala'), {
   ssr: false,
   loading: () => <div className="w-full max-w-[450px] aspect-square rounded-full bg-white/5 animate-pulse" />
 });
@@ -36,6 +41,33 @@ export default function Home() {
     predictions: 0,
     countries: 0,
   });
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Initialize audio only on client side to avoid SSR issues
+    audioRef.current = new Audio('/mantra.mp3');
+    audioRef.current.loop = true;
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+    
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
     // Simple mock counter animation on load
@@ -99,6 +131,13 @@ export default function Home() {
               >
                 Generate Kundli
               </Link>
+              <button
+                onClick={toggleAudio}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full font-inter text-xs tracking-widest uppercase font-bold text-secondary border border-secondary/20 hover:bg-secondary/10 transition-all duration-300"
+              >
+                {isPlaying ? <Volume2 className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4" />}
+                <span>{isPlaying ? 'Playing Mantra' : 'Play Mantra'}</span>
+              </button>
             </div>
 
             {/* Quick trust metrics */}
@@ -118,15 +157,45 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Hero Right Content - Interactive Zodiac Wheel */}
+          {/* Hero Right Content - Combined Zodiac Wheel & Rudraksh Mala */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center justify-center relative"
+            className="flex items-center justify-center relative min-h-[500px] cursor-pointer"
+            onClick={toggleAudio}
           >
-            <div className="w-full max-w-[450px]">
-              <ZodiacWheel />
+            {/* Audio Visualizer Rings (Active when playing) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+              <motion.div 
+                animate={isPlaying ? { scale: [1, 1.2, 1], opacity: [0.3, 0, 0.3] } : { scale: 1, opacity: 0 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="absolute w-[500px] h-[500px] rounded-full border-2 border-secondary/40"
+              />
+              <motion.div 
+                animate={isPlaying ? { scale: [1, 1.4, 1], opacity: [0.1, 0, 0.1] } : { scale: 1, opacity: 0 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                className="absolute w-[500px] h-[500px] rounded-full border border-secondary/20"
+              />
+            </div>
+            
+            {/* Background Zodiac Wheel */}
+            <div className="absolute inset-0 w-full max-w-[500px] z-10 m-auto flex items-center justify-center pointer-events-none">
+              <div className="w-full pointer-events-auto">
+                <ZodiacWheel />
+              </div>
+            </div>
+
+            {/* Inner Rudraksh Mala (Scaled down to fit inside the Zodiac Wheel) */}
+            <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+              <div className="w-full max-w-[450px] scale-[0.45] pointer-events-auto">
+                <RudrakshMala />
+              </div>
+            </div>
+            <div className="absolute -bottom-6 bg-black/50 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+              <span className="font-inter text-[10px] tracking-widest uppercase text-secondary font-bold">
+                {isPlaying ? 'Pause Mantra' : 'Click to Play Mantra'}
+              </span>
             </div>
           </motion.div>
         </div>
