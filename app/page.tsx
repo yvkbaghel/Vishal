@@ -42,31 +42,67 @@ export default function Home() {
     countries: 0,
   });
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const userManuallyPaused = React.useRef(false);
 
   useEffect(() => {
     // Initialize audio only on client side to avoid SSR issues
-    audioRef.current = new Audio('/mantra.mp3');
-    audioRef.current.loop = true;
+    const audio = new Audio('/mantra.mp3');
+    audio.loop = true;
+    audioRef.current = audio;
+    
+    const tryAutoplay = async () => {
+      if (userManuallyPaused.current) return;
+      
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (e) {
+        console.warn("Autoplay blocked. Will play on first user interaction.");
+        setIsPlaying(false);
+        
+        const onInteraction = async () => {
+          if (userManuallyPaused.current) return;
+          try {
+            await audio.play();
+            setIsPlaying(true);
+          } catch (err) {
+            console.error("Playback on interaction failed:", err);
+          } finally {
+            ['click', 'scroll', 'keydown', 'touchstart'].forEach(evt => 
+              window.removeEventListener(evt, onInteraction)
+            );
+          }
+        };
+
+        ['click', 'scroll', 'keydown', 'touchstart'].forEach(evt => 
+          window.addEventListener(evt, onInteraction, { once: true })
+        );
+      }
+    };
+
+    tryAutoplay();
     
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      audio.pause();
+      audioRef.current = null;
     };
   }, []);
 
-  const toggleAudio = () => {
+  const toggleAudio = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (!audioRef.current) return;
     
     if (isPlaying) {
       audioRef.current.pause();
+      userManuallyPaused.current = true;
+      setIsPlaying(false);
     } else {
-      audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
+      audioRef.current.play().catch(err => console.error("Audio playback failed:", err));
+      userManuallyPaused.current = false;
+      setIsPlaying(true);
     }
-    setIsPlaying(!isPlaying);
   };
 
   useEffect(() => {
@@ -131,13 +167,13 @@ export default function Home() {
               >
                 Generate Kundli
               </Link>
-              <button
+              {/* <button
                 onClick={toggleAudio}
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-full font-inter text-xs tracking-widest uppercase font-bold text-secondary border border-secondary/20 hover:bg-secondary/10 transition-all duration-300"
               >
                 {isPlaying ? <Volume2 className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4" />}
                 <span>{isPlaying ? 'Playing Mantra' : 'Play Mantra'}</span>
-              </button>
+              </button> */}
             </div>
 
             {/* Quick trust metrics */}
@@ -189,7 +225,7 @@ export default function Home() {
             {/* Inner Rudraksh Mala (Scaled down to fit inside the Zodiac Wheel) */}
             <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
               <div className="w-full max-w-[450px] scale-[0.45] pointer-events-auto">
-                <RudrakshMala />
+                <RudrakshMala isPlaying={isPlaying} />
               </div>
             </div>
             <div className="absolute -bottom-6 bg-black/50 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
