@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { label: 'Services', href: '/services' },
   { label: 'Kundli', href: '/kundli' },
   { label: 'Horoscope', href: '/horoscope' },
+  { label: 'Mantra', href: '/mantra' },
   // { label: 'Blog', href: '/blog' },
   // { label: 'Gallery', href: '/gallery' },
   // { label: 'Testimonials', href: '/testimonials' },
