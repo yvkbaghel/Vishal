@@ -11,10 +11,10 @@ const NAV_ITEMS = [
   { label: 'Services', href: '/services' },
   { label: 'Kundli', href: '/kundli' },
   { label: 'Horoscope', href: '/horoscope' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Testimonials', href: '/testimonials' },
-  { label: 'Contact', href: '/contact' },
+  // { label: 'Blog', href: '/blog' },
+  // { label: 'Gallery', href: '/gallery' },
+  // { label: 'Testimonials', href: '/testimonials' },
+  // { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
