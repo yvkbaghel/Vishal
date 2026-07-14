@@ -56,7 +56,6 @@ function calculateAscendant(date: Date, lat: number, lng: number, ayanamsa: numb
 
   let siderealAsc = ascendantLon - ayanamsa;
   if (siderealAsc < 0) siderealAsc += 360;
-  siderealAsc = (siderealAsc + 90) % 360;
 
   return siderealAsc;
 }
@@ -70,6 +69,7 @@ export interface ChartData {
     sign: number;
     signName: string;
     house: number;
+    degree: number;
   }[];
   houses: {
     houseNumber: number;
@@ -79,7 +79,9 @@ export interface ChartData {
 }
 
 export function generateBirthChart(dateStr: string, timeStr: string, lat: number, lng: number): ChartData {
-  const datetime = new Date(`${dateStr}T${timeStr}:00`);
+  const tzOffset = Math.round((lng / 15) * 2) / 2;
+  const localDate = new Date(`${dateStr}T${timeStr}:00Z`);
+  const datetime = new Date(localDate.getTime() - tzOffset * 60 * 60 * 1000);
   const time = MakeTime(datetime);
   const obs = new Observer(lat, lng, 0);
   const ayanamsa = getAyanamsa(datetime);
@@ -101,13 +103,14 @@ export function generateBirthChart(dateStr: string, timeStr: string, lat: number
       longitude: lon,
       sign,
       signName: ZODIAC_SIGNS[sign],
-      house
+      house,
+      degree: lon % 30
     };
   });
 
   const epoch = new Date('2000-01-01T12:00:00Z');
   const daysSinceEpoch = (datetime.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
-  let rahuLon = (193.4144 - 0.0529537648 * daysSinceEpoch) % 360;
+  let rahuLon = (125.044555 - 0.0529539264 * daysSinceEpoch) % 360;
   if (rahuLon < 0) rahuLon += 360;
   let rahuSidereal = (rahuLon - ayanamsa + 360) % 360;
   
@@ -118,7 +121,8 @@ export function generateBirthChart(dateStr: string, timeStr: string, lat: number
     longitude: rahuSidereal,
     sign: rahuSign,
     signName: ZODIAC_SIGNS[rahuSign],
-    house: ((rahuSign - ascSign + 12) % 12) + 1
+    house: ((rahuSign - ascSign + 12) % 12) + 1,
+    degree: rahuSidereal % 30
   });
 
   const ketuSidereal = (rahuSidereal + 180) % 360;
@@ -129,7 +133,8 @@ export function generateBirthChart(dateStr: string, timeStr: string, lat: number
     longitude: ketuSidereal,
     sign: ketuSign,
     signName: ZODIAC_SIGNS[ketuSign],
-    house: ((ketuSign - ascSign + 12) % 12) + 1
+    house: ((ketuSign - ascSign + 12) % 12) + 1,
+    degree: ketuSidereal % 30
   });
 
   const houses = Array.from({ length: 12 }, (_, i) => {

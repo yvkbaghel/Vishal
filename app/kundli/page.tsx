@@ -6,6 +6,81 @@ import Link from 'next/link';
 import { Calendar, Clock, MapPin, User, Compass } from 'lucide-react';
 import { ChartData } from '@/lib/astrology';
 
+const ASCENDANT_INTERPRETATIONS: Record<string, string> = {
+  Aries: "Aries Ascendant makes you dynamic, energetic, and highly ambitious. You are a natural leader who meets challenges head-on with courage, though you should guard against impulsiveness.",
+  Taurus: "Taurus Ascendant gives you a calm, reliable, and determined nature. You appreciate beauty, stability, and comfort, and work steadily toward your goals with great patience.",
+  Gemini: "Gemini Ascendant makes you intellectual, communicative, and highly adaptable. You possess a curious mind, love learning new things, and excel at social connections.",
+  Cancer: "Cancer Ascendant makes you deeply intuitive, nurturing, and emotionally sensitive. You value home, family, and security, and have strong protective instincts.",
+  Leo: "Leo Ascendant makes you charismatic, creative, and warm-hearted. You possess natural dignity, self-confidence, and a desire to express yourself fully and lead others.",
+  Virgo: "Virgo Ascendant gives you an analytical, detail-oriented, and practical mind. You seek order, efficiency, and wellness in life, and love being helpful to others.",
+  Libra: "Libra Ascendant makes you artistic, diplomatic, and harmony-seeking. You value relationships, justice, and balance in all areas of life, and possess natural charm.",
+  Scorpio: "Scorpio Ascendant makes you intense, magnetic, and deeply perceptive. You have strong willpower and go through powerful transformations throughout your life.",
+  Sagittarius: "Sagittarius Ascendant makes you optimistic, adventurous, and philosophically inclined. You value freedom, search for truth, and love exploring new horizons.",
+  Capricorn: "Capricorn Ascendant makes you disciplined, responsible, and highly ambitious. You work patiently and systematically toward success, valuing tradition and structure.",
+  Aquarius: "Aquarius Ascendant makes you humanitarian, independent, and intellectually progressive. You think outside the box, value community, and enjoy innovative ideas.",
+  Pisces: "Pisces Ascendant makes you highly imaginative, spiritual, and compassionate. You are deeply intuitive and feel a strong connection to the mystical and artistic realms."
+};
+
+const MOON_INTERPRETATIONS: Record<string, string> = {
+  Aries: "Your mind is passionate, enthusiastic, and quick to react. You feel a strong emotional need for independence, action, and overcoming obstacles.",
+  Taurus: "You have a deeply stable and serene emotional nature. You seek emotional security through material comfort, reliable relationships, and peaceful surroundings.",
+  Gemini: "You process emotions intellectually and through verbal expression. You have a talkative, curious mind that needs constant mental stimulation and social interaction.",
+  Cancer: "You are emotionally profound, empathetic, and highly attached to your past and family. Your moods flow like tides, and you seek emotional safety.",
+  Leo: "You have a proud, generous, and expressive emotional nature. You feel secure when you are appreciated, loved, and given space to express your creativity.",
+  Virgo: "You find emotional comfort in order, analysis, and being useful. You process feelings logically and show care through practical service to others.",
+  Libra: "Your emotional peace depends heavily on harmony in your close relationships. You seek balance, avoid conflict, and appreciate artistic aesthetics.",
+  Scorpio: "You experience emotions with extreme depth and intensity. You possess a private emotional world and value honesty, loyalty, and deep bonding.",
+  Sagittarius: "You have a cheerful, optimistic, and freedom-loving mind. You process emotional challenges with a philosophical attitude and seek meaning in all experiences.",
+  Capricorn: "You have a reserved and controlled emotional nature. You seek emotional security through duty, professional achievements, and self-reliance.",
+  Aquarius: "You process emotions with intellectual detachment and value friendship. You feel a strong emotional connection to social causes and community interests.",
+  Pisces: "Your emotional need is to connect with the divine, the mystical, and the creative. You process feelings with immense compassion and empathy."
+};
+
+const ZODIAC_RULERS: Record<string, string> = {
+  Aries: "Mars",
+  Taurus: "Venus",
+  Gemini: "Mercury",
+  Cancer: "Moon",
+  Leo: "Sun",
+  Virgo: "Mercury",
+  Libra: "Venus",
+  Scorpio: "Mars",
+  Sagittarius: "Jupiter",
+  Capricorn: "Saturn",
+  Aquarius: "Saturn",
+  Pisces: "Jupiter"
+};
+
+const LAGNA_LORD_INTERPRETATIONS: Record<number, string> = {
+  1: "Lagna Lord in the 1st House indicates a strong-willed, self-reliant, and highly independent individual. You place a high emphasis on self-development, physical health, and personal success.",
+  2: "Lagna Lord in the 2nd House focuses your life energy on finance, family, values, and speech. You are driven to accumulate assets and build security for your loved ones.",
+  3: "Lagna Lord in the 3rd House drives you towards communication, courage, sibling relationships, and artistic skills. You possess high initiative, mental drive, and enjoy self-expression.",
+  4: "Lagna Lord in the 4th House connects your core self to home, mother, emotional comfort, and properties. You find peace and vitality in secure, nurturing domestic environments.",
+  5: "Lagna Lord in the 5th House brings focus to intelligence, creative projects, children, and speculative endeavors. You are expressive, enjoy learning, and possess strong purva-punya (past merit).",
+  6: "Lagna Lord in the 6th House channels your life energy into daily work, health, service, and overcoming obstacles. You are resilient, analytical, and excel in problem-solving or helping professions.",
+  7: "Lagna Lord in the 7th House emphasizes partnerships, public relations, and marriage. Much of your life focus and growth comes through your interactions and agreements with others.",
+  8: "Lagna Lord in the 8th House turns your focus toward research, occult sciences, transformation, and shared resources. You have a deep, introspective mind and undergo significant life changes.",
+  9: "Lagna Lord in the 9th House indicates a strong connection to wisdom, spirituality, higher education, and travel. You seek truth, values, and have a highly philosophical outlook.",
+  10: "Lagna Lord in the 10th House places a strong focus on career, public status, and authority. You are highly ambitious, professional, and seek to make a visible impact on society.",
+  11: "Lagna Lord in the 11th House connects you with networks, friendships, community goals, and financial gains. You are highly social and work toward large-scale collective progress.",
+  12: "Lagna Lord in the 12th House leads you toward introspection, spirituality, meditation, and foreign travels. You possess deep subconscious insights and appreciate solitude."
+};
+
+const SUN_INTERPRETATIONS: Record<string, string> = {
+  Aries: "With the Sun exalted in Aries, your soul drive is pioneering, courageous, and highly independent. You seek to initiate new paths and possess boundless vitality.",
+  Taurus: "With the Sun in Taurus, your core identity is stable, determined, and practical. You seek to build tangible security and enjoy the sensory pleasures of life.",
+  Gemini: "With the Sun in Gemini, your soul expresses itself through curiosity, intellect, and versatile communication. You are a natural gatherer and disseminator of knowledge.",
+  Cancer: "With the Sun in Cancer, your identity is linked to emotional depth, care, and protection. You shine brightest when nurturing others and creating safe spaces.",
+  Leo: "With the Sun in Leo, you possess a radiant, creative, and magnanimous core. You seek self-expression, respect, and to lead with generosity.",
+  Virgo: "With the Sun in Virgo, your core drive is toward service, improvement, and intellectual analysis. You shine in organizing, problem-solving, and wellness.",
+  Libra: "With the Sun in Libra, you seek balance, harmony, and relationship development. Your soul drive is diplomatic, artistic, and cooperative.",
+  Scorpio: "With the Sun in Scorpio, your core self is intense, investigative, and transformative. You seek deep truth, hidden knowledge, and emotional power.",
+  Sagittarius: "With the Sun in Sagittarius, your identity is optimistic, philosophical, and freedom-loving. You are a seeker of truth, higher wisdom, and adventure.",
+  Capricorn: "With the Sun in Capricorn, your core drive is disciplined, ambitious, and duty-oriented. You seek to build long-lasting structures and achieve public respect.",
+  Aquarius: "With the Sun in Aquarius, your soul identity is progressive, humanitarian, and original. You care deeply about collective progress and intellectual freedom.",
+  Pisces: "With the Sun in Pisces, your core self is sensitive, artistic, and spiritually inclined. You shine in compassionate acts, imagination, and mystical seeking."
+};
+
 export default function KundliPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -58,17 +133,69 @@ export default function KundliPage() {
     }
   };
 
-  // Helper to get planets for a house
-  const getHousePlanets = (houseNum: number) => {
-    if (!chartData) return "";
-    const house = chartData.houses.find(h => h.houseNumber === houseNum);
-    return house ? house.planets.join(', ') : "";
+  // Hindi abbreviations for planets to match traditional charts
+  const PLANET_HINDI_MAP: Record<string, string> = {
+    Lagna: "ल",
+    Sun: "सू",
+    Moon: "च",
+    Mars: "मं",
+    Mercury: "बु",
+    Jupiter: "गु",
+    Venus: "शु",
+    Saturn: "श",
+    Rahu: "रा",
+    Ketu: "के"
   };
 
   const getHouseSign = (houseNum: number) => {
     if (!chartData) return "";
     const house = chartData.houses.find(h => h.houseNumber === houseNum);
     return house ? (house.sign + 1).toString() : ""; // Zodiac sign number (1=Aries)
+  };
+
+  // Stack planets vertically within the house bounding box to avoid overlaps
+  const renderHouseContent = (houseNum: number, centerX: number, centerY: number) => {
+    if (!chartData) return null;
+    
+    // Collect planets in this house
+    const housePlanets = chartData.planets
+      .filter(p => p.house === houseNum)
+      .map(p => ({
+        name: p.name,
+        label: PLANET_HINDI_MAP[p.name] || p.symbol,
+        degree: Math.floor(p.degree)
+      }));
+    
+    // Add Lagna to House 1
+    if (houseNum === 1) {
+      housePlanets.unshift({
+        name: "Lagna",
+        label: "ल",
+        degree: Math.floor(chartData.ascendant.degree)
+      });
+    }
+
+    if (housePlanets.length === 0) return null;
+
+    return (
+      <g>
+        {housePlanets.map((p, idx) => {
+          // Stack them vertically around centerY
+          const offsetY = (idx - (housePlanets.length - 1) / 2) * 13;
+          return (
+            <text
+              key={p.name}
+              x={centerX}
+              y={centerY + offsetY}
+              textAnchor="middle"
+              className="fill-white font-inter text-[9.5px] font-bold tracking-tight"
+            >
+              {p.label}{p.degree}
+            </text>
+          );
+        })}
+      </g>
+    );
   };
 
   return (
@@ -269,53 +396,53 @@ export default function KundliPage() {
                       <line x1="150" y1="290" x2="290" y2="150" className="stroke-secondary/40 stroke-[1.5]" />
                       <line x1="290" y1="150" x2="150" y2="10" className="stroke-secondary/40 stroke-[1.5]" />
 
-                      {/* Center Diamond (Lagna) Label - House 1 */}
-                      <text x="150" y="100" textAnchor="middle" className="fill-secondary/80 font-cinzel text-[10px] font-bold">ASC ({getHouseSign(1)})</text>
-                      <text x="150" y="80" textAnchor="middle" className="fill-white font-inter text-[12px] font-bold">{getHousePlanets(1)}</text>
+                      {/* House 1: Center Diamond */}
+                      <text x="150" y="120" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(1)}</text>
+                      {renderHouseContent(1, 150, 80)}
 
                       {/* House 2: Top-Left */}
-                      <text x="90" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(2)}</text>
-                      <text x="90" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(2)}</text>
+                      <text x="115" y="30" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(2)}</text>
+                      {renderHouseContent(2, 80, 45)}
 
                       {/* House 3: Left-Top */}
-                      <text x="55" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(3)}</text>
-                      <text x="55" y="110" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(3)}</text>
+                      <text x="30" y="115" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(3)}</text>
+                      {renderHouseContent(3, 45, 80)}
 
                       {/* House 4: Left Diamond */}
-                      <text x="100" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(4)}</text>
-                      <text x="100" y="175" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(4)}</text>
+                      <text x="120" y="150" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(4)}</text>
+                      {renderHouseContent(4, 80, 150)}
 
                       {/* House 5: Left-Bottom */}
-                      <text x="55" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(5)}</text>
-                      <text x="55" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(5)}</text>
-                      
+                      <text x="30" y="185" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(5)}</text>
+                      {renderHouseContent(5, 45, 220)}
+
                       {/* House 6: Bottom-Left */}
-                      <text x="90" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(6)}</text>
-                      <text x="90" y="275" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(6)}</text>
+                      <text x="115" y="270" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(6)}</text>
+                      {renderHouseContent(6, 80, 255)}
 
                       {/* House 7: Bottom Diamond */}
-                      <text x="150" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(7)}</text>
-                      <text x="150" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(7)}</text>
+                      <text x="150" y="180" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(7)}</text>
+                      {renderHouseContent(7, 150, 220)}
 
                       {/* House 8: Bottom-Right */}
-                      <text x="210" y="255" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(8)}</text>
-                      <text x="210" y="275" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(8)}</text>
+                      <text x="185" y="270" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(8)}</text>
+                      {renderHouseContent(8, 220, 255)}
 
                       {/* House 9: Right-Bottom */}
-                      <text x="245" y="210" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(9)}</text>
-                      <text x="245" y="230" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(9)}</text>
+                      <text x="270" y="185" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(9)}</text>
+                      {renderHouseContent(9, 255, 220)}
 
                       {/* House 10: Right Diamond */}
-                      <text x="200" y="155" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(10)}</text>
-                      <text x="200" y="175" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(10)}</text>
+                      <text x="180" y="150" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(10)}</text>
+                      {renderHouseContent(10, 220, 150)}
 
                       {/* House 11: Right-Top */}
-                      <text x="245" y="90" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(11)}</text>
-                      <text x="245" y="110" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(11)}</text>
+                      <text x="270" y="115" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(11)}</text>
+                      {renderHouseContent(11, 255, 80)}
 
                       {/* House 12: Top-Right */}
-                      <text x="210" y="45" textAnchor="middle" className="fill-slate-400 font-inter text-[9px]">{getHouseSign(12)}</text>
-                      <text x="210" y="65" textAnchor="middle" className="fill-white font-inter text-[11px] font-bold">{getHousePlanets(12)}</text>
+                      <text x="185" y="30" textAnchor="middle" className="fill-secondary font-inter text-[10px] font-bold">{getHouseSign(12)}</text>
+                      {renderHouseContent(12, 220, 45)}
 
                     </svg>
                     <span className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-widest text-slate-500 font-inter">
@@ -351,25 +478,55 @@ export default function KundliPage() {
                 </div>
 
                 {/* Interpretation / Explanations */}
-                <div className="glass rounded-xl p-8 border border-white/5 flex flex-col gap-4 leading-relaxed text-slate-300 font-inter text-xs">
-                  <h3 className="font-cinzel text-sm font-bold text-white mb-2 uppercase tracking-widest">Initial Vedic Interpretations</h3>
-                  <div>
-                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">1. Personality Profile (Ascendant in {chartData.ascendant.signName})</span>
-                    <p>
-                      Your Ascendant (Lagna) is {chartData.ascendant.signName}. This defines your primary outward personality, constitution, and general approach to life.
-                    </p>
-                  </div>
-                  <div>
-                    <span className="text-secondary font-bold font-cinzel text-xs block mb-1">2. Emotional Foundation (Moon in {chartData.planets.find(p => p.name === 'Moon')?.signName})</span>
-                    <p>
-                      With the Moon placed in {chartData.planets.find(p => p.name === 'Moon')?.signName}, your subconscious mind and emotional reactions are heavily influenced by this sign&apos;s traits.
-                    </p>
-                  </div>
-                  <div className="bg-secondary/5 border border-secondary/15 p-4 rounded-lg mt-4 flex items-center justify-between gap-4">
-                    <div className="flex flex-col gap-1">
-                      <span className="font-cinzel text-xs font-bold text-white">Unlock Full 20-Page Kundli Report</span>
-                      <p className="text-[10px] text-slate-400">Receive manual transit predictions for the next 15 years in PDF format.</p>
-                    </div>
+                {(() => {
+                  const lagnaLordName = ZODIAC_RULERS[chartData.ascendant.signName] || "";
+                  const lagnaLordPlanet = chartData.planets.find(p => p.name === lagnaLordName);
+                  const sunPlanet = chartData.planets.find(p => p.name === 'Sun');
+                  return (
+                    <div className="glass rounded-xl p-8 border border-white/5 flex flex-col gap-5 leading-relaxed text-slate-300 font-inter text-xs">
+                      <h3 className="font-cinzel text-sm font-bold text-white mb-2 uppercase tracking-widest">Initial Vedic Interpretations</h3>
+                      
+                      <div>
+                        <span className="text-secondary font-bold font-cinzel text-xs block mb-1">1. Personality Profile (Ascendant in {chartData.ascendant.signName})</span>
+                        <p>
+                          {ASCENDANT_INTERPRETATIONS[chartData.ascendant.signName] || `Your Ascendant (Lagna) is ${chartData.ascendant.signName}. This defines your primary outward personality, constitution, and general approach to life.`}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className="text-secondary font-bold font-cinzel text-xs block mb-1">2. Emotional Foundation (Moon in {chartData.planets.find(p => p.name === 'Moon')?.signName})</span>
+                        <p>
+                          {MOON_INTERPRETATIONS[chartData.planets.find(p => p.name === 'Moon')?.signName || ""] || `With the Moon placed in ${chartData.planets.find(p => p.name === 'Moon')?.signName}, your subconscious mind and emotional reactions are heavily influenced by this sign's traits.`}
+                        </p>
+                      </div>
+
+                      {lagnaLordPlanet && (
+                        <div>
+                          <span className="text-secondary font-bold font-cinzel text-xs block mb-1">
+                            3. Focus of Life Force (Lagna Lord {lagnaLordName} in House {lagnaLordPlanet.house})
+                          </span>
+                          <p>
+                            {LAGNA_LORD_INTERPRETATIONS[lagnaLordPlanet.house] || `Your Ascendant lord ${lagnaLordName} is placed in the ${lagnaLordPlanet.house} house, highlighting this area as a major focus of your life journey.`}
+                          </p>
+                        </div>
+                      )}
+
+                      {sunPlanet && (
+                        <div>
+                          <span className="text-secondary font-bold font-cinzel text-xs block mb-1">
+                            4. Core Identity & Vitality (Sun in {sunPlanet.signName})
+                          </span>
+                          <p>
+                            {SUN_INTERPRETATIONS[sunPlanet.signName] || `With the Sun situated in ${sunPlanet.signName}, your core self-expression, ego structure, and overall life vitality align with these traits.`}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="bg-secondary/5 border border-secondary/15 p-4 rounded-lg mt-4 flex items-center justify-between gap-4">
+                        <div className="flex flex-col gap-1">
+                          <span className="font-cinzel text-xs font-bold text-white">Unlock Full 20-Page Kundli Report</span>
+                          <p className="text-[10px] text-slate-400">Receive manual transit predictions for the next 15 years in PDF format.</p>
+                        </div>
                     <Link
                       href="/booking"
                       className="px-4 py-2.5 bg-secondary text-[#050816] rounded-md font-bold text-[10px] tracking-wider uppercase hover:bg-amber-400 transition-colors text-center font-inter shrink-0"
@@ -378,6 +535,8 @@ export default function KundliPage() {
                     </Link>
                   </div>
                 </div>
+                  );
+                })()}
               </motion.div>
             ) : (
               <div className="h-full min-h-[350px] rounded-xl glass border border-white/5 flex flex-col items-center justify-center text-center p-8 gap-4">
