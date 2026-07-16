@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VishalAstro - Coming Soon</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --primary: #673AB7;
+            --secondary: #FFC107;
+            --accent: #3F51B5;
+            --bg-color: #050816;
+            --surface: #111827;
+            --card-bg: #1F2937;
+            --text-main: #FFFFFF;
+            --text-muted: #CBD5E1;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: transparent; /* Changed from var(--bg-color) to transparent */
+            color: var(--text-main);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cosmic Animated Background */
+        .cosmic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; /* Changed from -2 to 0 */
+            background: radial-gradient(circle at center, #1a0b2e 0%, var(--bg-color) 100%);
+            overflow: hidden;
+        }
+
+        .nebula {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150vw;
+            height: 150vw;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(103, 58, 183, 0.15) 0%, rgba(63, 81, 181, 0.1) 40%, rgba(5, 8, 22, 0) 70%);
+            animation: rotateNebula 60s linear infinite;
+        }
+
+        @keyframes rotateNebula {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Golden dust particles */
+        .particle {
+            position: absolute;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 8s infinite ease-in-out;
+            box-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Stars and Twinkling */
+        .star {
+            position: absolute;
+            background-color: #FFF;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--duration) infinite alternate ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #FFF, 0 0 20px #FFF; }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
+            animation: shootingStar 4s linear infinite;
+            opacity: 0;
+            transform: rotate(-45deg);
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px 3px #fff;
+        }
+
+        @keyframes shootingStar {
+            0% { transform: translateX(200px) translateY(-200px) rotate(-45deg); opacity: 1; }
+            20% { transform: translateX(-800px) translateY(800px) rotate(-45deg); opacity: 0; }
+            100% { transform: translateX(-800px) translateY(800px) rotate(-45deg); opacity: 0; }
+        }
+
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+            padding: 3rem 2rem;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(17, 24, 39, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            border-radius: 2rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand {
+            font-family: 'Cinzel', serif;
+            color: var(--secondary);
+            font-size: 1.25rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #CBD5E1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        p.subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 3.5rem;
+            font-style: italic;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+
+        .time-box {
+            background: var(--card-bg);
+            border: 1px solid rgba(103, 58, 183, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem 1rem;
+            min-width: 100px;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .time-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            opacity: 0.5;
+        }
+
+        .time-box:hover {
+            transform: translateY(-8px);
+            border-color: var(--secondary);
+            box-shadow: 0 15px 40px -10px rgba(255, 193, 7, 0.2);
+        }
+
+        .time-value {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            text-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+
+        .attribution {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .attribution a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .attribution a:hover {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .time-box {
+                min-width: 80px;
+                padding: 1rem 0.5rem;
+            }
+
+            .time-value {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cosmic-bg">
+        <div class="nebula"></div>
+        <!-- Particles will be injected by JS -->
+    </div>
+
+    <div class="container">
+        <span class="brand">VishalAstro</span>
+        <h1>Transform Your Destiny</h1>
+        <p class="subtitle">Ancient Vedic Wisdom Meets Modern Technology. A premium astrology experience is coming.</p>
+
+        <div class="countdown">
+            <div class="time-box">
+                <span class="time-value" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+
+        <div class="attribution">
+            Design and maintain by <a href="https://edoceo.in" target="_blank" rel="noopener noreferrer">Edoceo</a>
+        </div>
+
+    </div>
+
+    <script>
+        const cosmicBg = document.querySelector('.cosmic-bg');
+
+        // Generate static twinkling stars
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            cosmicBg.appendChild(star);
+        }
+
+        // Generate shooting stars
+        for (let i = 0; i < 5; i++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.classList.add('shooting-star');
+            shootingStar.style.left = `${Math.random() * 100}%`;
+            shootingStar.style.top = `${Math.random() * 50}%`;
+            shootingStar.style.animationDelay = `${Math.random() * 10}s`;
+            cosmicBg.appendChild(shootingStar);
+        }
+
+        // Generate cosmic golden dust particles
+        for (let i = 0; i < 40; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 3 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            cosmicBg.appendChild(particle);
+        }
+
+        // ==========================================
+        // SET YOUR LAUNCH DATE AND TIME HERE
+        // Format: "YYYY-MM-DDTHH:MM:SS" (e.g., "2026-08-15T12:00:00")
+        // ==========================================
+        const TARGET_LAUNCH_DATE = "2026-07-16T12:35:00";
+
+        const countDownDate = new Date(TARGET_LAUNCH_DATE).getTime();
+
+        let hasCelebrated = false;
+        let countdownTimer;
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+
+                if (!hasCelebrated) {
+                    hasCelebrated = true;
+                    clearInterval(countdownTimer);
+
+                    // Celebration Animation
+                    const duration = 3 * 1000; // 3 seconds
+                    const animationEnd = Date.now() + duration;
+                    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+                    const randomInRange = (min, max) => Math.random() * (max - min) + min;
+
+                    const interval = setInterval(function () {
+                        const timeLeft = animationEnd - Date.now();
+
+                        if (timeLeft <= 0) {
+                            return clearInterval(interval);
+                        }
+
+                        const particleCount = 50 * (timeLeft / duration);
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                    }, 250);
+
+                    // Redirect to original site after celebration (4 seconds)
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 4000);
+                }
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        };
+
+        // Initial call
+        updateCountdown();
+        // Update every second
+        countdownTimer = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>
